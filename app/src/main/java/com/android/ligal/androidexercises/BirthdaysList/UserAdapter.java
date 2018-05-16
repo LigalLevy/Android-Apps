@@ -29,9 +29,7 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull UserAdapter.ViewHolder holder, int position) {
         holder.name.setText(birthdays.get(position).getName());
         holder.birthDate.setText(birthdays.get(position).getBirthDay());
-        //TODO: holder.daysUntil function
         holder.comment.setText(birthdays.get(position).getComment());
-
     }
 
     @Override
@@ -40,14 +38,12 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public TextView birthDate;
-        public TextView daysUntil;
         public TextView comment;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name_tv);
             birthDate = itemView.findViewById(R.id.birthdate_tv);
-            daysUntil = itemView.findViewById(R.id.days_until);
             comment = itemView.findViewById(R.id.comment_tv);
 
         }

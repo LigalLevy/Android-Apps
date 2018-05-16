@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,11 +18,13 @@ import java.util.Calendar;
 
 public class CreateBirthday extends AppCompatActivity {
 
+
+    private static final String TAG = "CreateActivity";
+
     EditText name;
     EditText birthDate;
     EditText comment;
     Button button;
-    String date;
     int day, month, year;
     Calendar mCurrentDate;
 
@@ -55,7 +58,7 @@ public class CreateBirthday extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month+1;
                         birthDate.setText(dayOfMonth+"/"+month+"/"+year);
-                        date = dayOfMonth+"/"+month+"/"+year;
+                        //Debug: Log.d(TAG, "onDateSet: " + birthDate.getText().toString());
                     }
                 }, year, month, day);
                 datePickerDialog.show();

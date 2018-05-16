@@ -13,6 +13,9 @@ import android.view.View;
 import com.android.ligal.androidexercises.R;
 
 
+import java.text.ParseException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BirthdayActivity extends AppCompatActivity {
@@ -22,7 +25,7 @@ public class BirthdayActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     FloatingActionButton fab;
-
+    List<BirthDayList> birthdays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +35,28 @@ public class BirthdayActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         BirthdaysListDatabase db = Room.databaseBuilder(getApplicationContext(), BirthdaysListDatabase.class, "BirthDays List")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 
-        List<BirthDayList> birthdays = db.birthDaysListDao().getAllItems();
+        birthdays = db.birthDaysListDao().getAllItems();
+        Collections.sort(birthdays, new Comparator<BirthDayList>() {
+            @Override
+            public int compare(BirthDayList n1, BirthDayList n2) {
+                try {
+                    int bdayInt1 = n1.calcBirthDay(n1.getBirthDay());
+                    int bdayInt2 = n2.calcBirthDay(n2.getBirthDay());
+                    return Integer.compare(bdayInt1, bdayInt2);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return 0;
+            }
+        });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserAdapter(birthdays);
         recyclerView.setAdapter(adapter);
 
@@ -48,7 +65,6 @@ public class BirthdayActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                startActivity(new Intent(BirthdayActivity.this , CreateBirthday.class));
-
             }
         });
     }
