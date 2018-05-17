@@ -44,25 +44,6 @@ public class BirthDayList {
 
     public String getBirthDay() { return birthDay; }
 
-    public String getAge() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = dateFormat.parse(birthDay);
-
-        Calendar birhday_tmp = Calendar.getInstance();
-        birhday_tmp.setTime(date);
-        Calendar today = Calendar.getInstance();
-
-        int age = today.get(Calendar.YEAR) - birhday_tmp.get(Calendar.YEAR);
-
-        if (today.get(Calendar.DAY_OF_YEAR) < birhday_tmp.get(Calendar.DAY_OF_YEAR)){
-            age--;
-        }
-
-        Integer ageInt = Integer.valueOf(age);
-        String _age = ageInt.toString();
-
-        return _age;
-    }
 
 
     public void setName(String name) {
@@ -80,6 +61,8 @@ public class BirthDayList {
     public void setId(int id) {
         this.id = id;
     }
+
+
 
     public int calcBirthDay(String birthday) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

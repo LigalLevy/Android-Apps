@@ -1,5 +1,6 @@
 package com.android.ligal.androidexercises.BirthdaysList;
 
+
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.android.ligal.androidexercises.R;
@@ -37,12 +39,15 @@ public class BirthdayActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        BirthdaysListDatabase db = Room.databaseBuilder(getApplicationContext(), BirthdaysListDatabase.class, "BirthDays List")
+        BirthdaysListDatabase db = Room.databaseBuilder(getApplicationContext(), BirthdaysListDatabase.class,
+                "BirthDayList")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 
+
         birthdays = db.birthDaysListDao().getAllItems();
+        Log.d(TAG, "List count:" + String.valueOf(birthdays.size()));
         Collections.sort(birthdays, new Comparator<BirthDayList>() {
             @Override
             public int compare(BirthDayList n1, BirthDayList n2) {

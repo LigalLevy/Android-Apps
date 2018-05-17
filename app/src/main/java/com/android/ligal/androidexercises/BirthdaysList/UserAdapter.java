@@ -15,8 +15,8 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     List<BirthDayList> birthdays;
 
-    public UserAdapter(List<BirthDayList> users) {
-        this.birthdays = users;
+    public UserAdapter(List<BirthDayList> _birthdays) {
+        this.birthdays = _birthdays;
     }
 
     @Override
@@ -26,10 +26,10 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserAdapter.ViewHolder holder, int position) {
-        holder.name.setText(birthdays.get(position).getName());
-        holder.birthDate.setText(birthdays.get(position).getBirthDay());
-        holder.comment.setText(birthdays.get(position).getComment());
+    public void onBindViewHolder( UserAdapter.ViewHolder holder, int position) {
+        holder.name.setText(this.birthdays.get(position).getName());
+        holder.birthDate.setText(this.birthdays.get(position).getBirthDay());
+        holder.comment.setText(this.birthdays.get(position).getComment());
     }
 
     @Override

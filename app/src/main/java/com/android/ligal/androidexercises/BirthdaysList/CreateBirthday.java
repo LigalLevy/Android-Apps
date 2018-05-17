@@ -18,7 +18,6 @@ import java.util.Calendar;
 
 public class CreateBirthday extends AppCompatActivity {
 
-
     private static final String TAG = "CreateActivity";
 
     EditText name;
@@ -33,9 +32,9 @@ public class CreateBirthday extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_birthday);
 
-        name = findViewById(R.id.name);
-        birthDate = findViewById(R.id.birth_date);
-        comment = findViewById(R.id.comment);
+        name = findViewById(R.id._name);
+        birthDate = findViewById(R.id._birthday);
+        comment = findViewById(R.id._comment);
         button = findViewById(R.id.buttonAdd);
 
         mCurrentDate = Calendar.getInstance();
@@ -46,7 +45,8 @@ public class CreateBirthday extends AppCompatActivity {
         month = month+1;
 
 
-        final BirthdaysListDatabase db = Room.databaseBuilder(getApplicationContext(), BirthdaysListDatabase.class, "BirthdaysList")
+        final BirthdaysListDatabase db = Room.databaseBuilder(getApplicationContext(), BirthdaysListDatabase.class, "BirthDayList")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 

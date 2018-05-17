@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/name"
+            android:id="@+id/_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="full name"/>
@@ -27,14 +27,14 @@
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/birth_date"
+            android:id="@+id/_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="pick a date"
             tools:clickable="true" />
 
         <CalendarView
-            android:id="@+id/calendar_view"
+            android:id="@+id/_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/comment"
+            android:id="@+id/_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="comment"/>
